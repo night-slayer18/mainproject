@@ -6,6 +6,7 @@ const Upload = (props) => {
   const [subtitleFile, setSubtitleFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
+  const {uploadSuccess,upError,errorOccurred, uploadClear} = props;
 
   const videoRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -23,6 +24,7 @@ const Upload = (props) => {
     setSubtitleFile(null);
     videoRef.current.value = '';
     subtitleRef.current.value = '';
+    uploadClear();
   };
 
   const handleUploadFiles = async () => {
@@ -45,16 +47,16 @@ const Upload = (props) => {
         setSubtitleFile(null);
         videoRef.current.value = '';
         subtitleRef.current.value = '';
-        props.uploadSuccess();
+        uploadSuccess();
       } else {
         console.error('File upload failed');
         setUploadError('File upload failed. Please try again.');
-        props.uploadError();
+        upError();
       }
     } catch (error) {
       console.error('Error uploading files:', error);
       setUploadError('An error occurred. Please try again.');
-        props.errorOccurred();
+        errorOccurred();
     } finally {
       setUploading(false);
     }
