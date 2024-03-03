@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const folderPath = 'C:/Users/acer/mainproject';
+const folderPath = 'C:/Users/acer/vidsum/code/';
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); // Use express.urlencoded for form data
@@ -13,7 +13,7 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,'C:/Users/acer/mainproject/');
+    cb(null,'C:/Users/acer/vidsum/code/');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
