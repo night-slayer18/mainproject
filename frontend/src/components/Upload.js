@@ -6,6 +6,7 @@ const Upload = (props) => {
   const [subtitleFile, setSubtitleFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
+  const [videoUrl, setVideoUrl] = useState('');
   const {uploadSuccess,upError,errorOccurred, uploadClear} = props;
 
   const videoRef = useRef(null);
@@ -47,6 +48,9 @@ const Upload = (props) => {
         setSubtitleFile(null);
         videoRef.current.value = '';
         subtitleRef.current.value = '';
+        const videoBlob = await response.blob();
+        const videoObjectUrl = URL.createObjectURL(videoBlob);
+        setVideoUrl(videoObjectUrl);
         uploadSuccess();
       } else {
         console.error('File upload failed');
@@ -107,6 +111,12 @@ const Upload = (props) => {
       </div>
 
       {uploadError && <div className="text-danger mt-3">{uploadError}</div>}
+      {videoUrl && (
+        <video controls>
+          <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
     </div>
     </div>
   )
