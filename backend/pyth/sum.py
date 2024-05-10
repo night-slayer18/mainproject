@@ -311,6 +311,7 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
 #                                                     subtitle_ext))
 #     return movie_filename, subtitle_filename
 def download_video(url, filename="1.mp4"):
+    folder = "C:/Users/acer/mainproject/backend/data/"
     try:
         # Create a YouTube object
         yt = YouTube(url)
@@ -318,8 +319,10 @@ def download_video(url, filename="1.mp4"):
         # Get the highest resolution stream
         video_stream = yt.streams.get_highest_resolution()
 
+        file_path = os.path.join(folder, filename)
+
         # Download the video to the current directory with the specified filename
-        video_stream.download(filename=filename)
+        video_stream.download(output_path=folder,filename=filename)
 
         #print(f"Download successful! Saved as {filename}")
         return filename
@@ -338,7 +341,11 @@ def get_video_id(url):
 
 def download_cc_as_srt(video_url, output_filename="1.srt"):
         # Get the video ID from the URL
+        folder = "C:/Users/acer/mainproject/backend/data/"
+        file_path = os.path.join(folder, output_filename)
+
         video_id = get_video_id(video_url)
+
 
         if video_id:
             # Get the transcript for the YouTube video
@@ -346,7 +353,7 @@ def download_cc_as_srt(video_url, output_filename="1.srt"):
 
             if transcript:
                 # Write the transcript to an SRT file
-                with open(output_filename, 'w', encoding='utf-8') as srt_file:
+                with open(file_path, 'w', encoding='utf-8') as srt_file:
                     for i, entry in enumerate(transcript, start=1):
                         start_time = entry['start']
                         end_time = start_time + entry['duration']
