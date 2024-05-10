@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const folderPath = "C:\\JG\\CODE\\MainProject\\mainproject\\backend\\data";
+const folderPath = "C:/Users/acer/mainproject/backend/data/";
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); // Use express.urlencoded for form data
@@ -13,7 +13,7 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,"C:\\JG\\CODE\\MainProject\\mainproject\\backend\\data");
+    cb(null,"C:/Users/acer/mainproject/backend/data/");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);

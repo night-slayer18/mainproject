@@ -253,17 +253,17 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
     #                 temp_audiofile="temp.m4a", remove_temp=True, audio_codec="aac")
     #     return True
     # else:
-    folder = "C:\\JG\\CODE\\MainProject\\mainproject\\backend\\data"
+    folder = "C:/Users/acer/mainproject/backend/data/"
     input_video_path = os.path.join(folder, filename)
     video_clip = VideoFileClip(input_video_path)
 
     # Get the duration of the video in seconds
     duration_seconds = video_clip.duration
     input_subtitle_path = os.path.join(folder, subtitles)
-    regions = find_summary_regions(input_subtitle_path, duration_seconds*0.2, "english")
+    regions = find_summary_regions(input_subtitle_path, duration_seconds*0.3, "english")
     summary = create_summary(input_video_path, regions)
     base, ext = os.path.splitext(filename)
-    destination_folder = "C:\\JG\\CODE\\MainProject\\mainproject\\backend\\data"
+    destination_folder = "C:/Users/acer/mainproject/backend/data/"
 
     # Create the full path to the output video file
     output = os.path.join(destination_folder, "{0}_1.mp4".format(base))

@@ -57,6 +57,6 @@ def start_watcher(folder_path):
         observer.join()
 
 if __name__ == "__main__":
-    folder_path = "C:\\JG\\CODE\\MainProject\\mainproject\\backend\\data"
+    folder_path = "C:/Users/acer/mainproject/backend/data/"
     start_watcher(folder_path)
 
